@@ -6,7 +6,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.sql.Timestamp;
 
-public class Sighting {
+public class Sighting implements DatabaseManagement {
   private int animal_id;
   private String location;
   private String ranger_name;
@@ -50,6 +50,7 @@ public class Sighting {
     }
   }
 
+  @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (animal_id, location, ranger_name, date) VALUES (:animal_id, :location, :ranger_name, now());";
@@ -60,6 +61,16 @@ public class Sighting {
         .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  @Override
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "DELETE FROM sightings WHERE id=:id;";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
     }
   }
 

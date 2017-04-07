@@ -57,6 +57,14 @@ public class EndangeredAnimalTest {
   }
 
   @Test
+  public void delete_deletesSightingDatabase_0() {
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
+    testEndangeredAnimal.save();
+    testEndangeredAnimal.delete();
+    assertEquals(0, EndangeredAnimal.all().size());
+  }
+
+  @Test
   public void update_updatesAgeAttribute_true() {
     EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
     testEndangeredAnimal.save();

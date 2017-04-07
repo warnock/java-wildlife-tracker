@@ -74,6 +74,16 @@ public class SightingTest {
   }
 
   @Test
+  public void delete_deletesSightingDatabase_0() {
+    Animal testAnimal = new Animal("Badger");
+    testAnimal.save();
+    Sighting testSighting = new Sighting (testAnimal.getId(), "45.472428, -121.946466", "Ranger Reese");
+    testSighting.save();
+    testSighting.delete();
+    assertEquals(0, Sighting.all().size());
+  }
+
+  @Test
   public void save_recordsTimeOfSightingInDatabase() {
     Animal testAnimal = new Animal("Deer");
     testAnimal.save();
