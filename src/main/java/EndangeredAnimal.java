@@ -36,8 +36,8 @@ public class EndangeredAnimal implements DatabaseManagement {
     return id;
   }
 
-  public String healthStatus(int endangeredAnimal) {
-    if(endangeredAnimal > 50){
+  public String healthStatus(int health) {
+    if(health > okay){
       this.health = "this animal is healthy";
     } else {
       this.health = "this animal is NOT healthy";

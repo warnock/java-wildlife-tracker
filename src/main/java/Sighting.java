@@ -52,6 +52,9 @@ public class Sighting implements DatabaseManagement {
 
   @Override
   public void save() {
+    if (location.length() < 1 || ranger_name.length() < 1) {
+      throw new UnsupportedOperationException("You must enter in a location");
+      } 
     try(Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO sightings (animal_id, location, ranger_name, date) VALUES (:animal_id, :location, :ranger_name, now());";
       this.id = (int) con.createQuery(sql, true)

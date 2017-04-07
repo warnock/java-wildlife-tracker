@@ -94,4 +94,11 @@ public class SightingTest {
     assertEquals(rightNow.getDay(), savedTime.getDay());
   }
 
+  @Test(expected = UnsupportedOperationException.class)
+  public void save_throwsExceptionIfLocationAndNameNotEntered(){
+    Animal testAnimal = new Animal("Deer");
+    testAnimal.save();
+    Sighting testSighting = new Sighting(testAnimal.getId(), "", "");
+    testSighting.save();
+  }
 }
