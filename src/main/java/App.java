@@ -101,5 +101,14 @@ public class App {
       model.put("template", "templates/error.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    get("/sightings", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/sightings.vtl");
+      model.put("animals", Animal.all());
+      model.put("endangeredAnimals", EndangeredAnimal.all());
+      model.put("sightings", Sighting.all());
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
   }
 }
