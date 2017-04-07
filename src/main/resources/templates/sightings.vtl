@@ -1,5 +1,20 @@
 <h1>All the sightings!</h1>
 
+#foreach($sighting in $animal.getSightings())
+  Date/Time seen: $sighting.getSightingDate()
+  Location: $sighting.getLocation()
+  Reported by: $sighting.getRangerName()
+  ID: >$sighting.getId()
+#end
+
+#foreach($sighting in $endangeredAnimal.getSightings())
+  Location: <strong>$sighting.getLocation()</strong> |
+  Health: $endangeredAnimal.getHealth() |
+  Age: $endangeredAnimal.getAge() |
+  Reported by: $sighting.getRangerName() |
+  Date/Time seen: $sighting.getSightingDate() |
+  ID: $sighting.getId() |
+#end
 
 <h3>Endangered Animal Sightings</h3>
 
@@ -15,7 +30,7 @@
   #end
 #end
 
-<h3>All Non-endangered Animals & Sightings</h3>
+<h3>All Non-endangered Animals Sightings</h3>
 #if ($animals.size() == 0)
   <a href="/animal/new">Add Animal to Database to Report a Sighting</a>
 #else
