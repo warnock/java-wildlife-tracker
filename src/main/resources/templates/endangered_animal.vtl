@@ -9,6 +9,7 @@
   #foreach($sighting in $endangeredAnimal.getSightings())
     Location: <strong>$sighting.getLocation()</strong>
     Health: $endangeredAnimal.getHealth()
+    Health-status: $endangeredAnimal.healthStatu()
     Age: $endangeredAnimal.getAge()
     Reported by: $sighting.getRangerName()
     Date/Time seen: $sighting.getSightingDate()

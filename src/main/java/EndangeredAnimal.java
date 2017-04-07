@@ -9,6 +9,10 @@ public class EndangeredAnimal implements DatabaseManagement {
   private String health;
   private String age;
 
+  public static final int healthy = 100;
+  public static final int okay = 50;
+  public static final int ill = 0;
+
   public EndangeredAnimal(String name, String health, String age) {
     this.name = name;
     this.id = id;
@@ -30,6 +34,15 @@ public class EndangeredAnimal implements DatabaseManagement {
 
   public int getId() {
     return id;
+  }
+
+  public String healthStatus(int endangeredAnimal) {
+    if(endangeredAnimal > 50){
+      this.health = "this animal is healthy";
+    } else {
+      this.health = "this animal is NOT healthy";
+    }
+    return this.health;
   }
 
   @Override
