@@ -71,10 +71,5 @@ public class EndangeredAnimalTest {
     testEndangeredAnimal.updateAge("Adult");
     assertEquals("Adult", EndangeredAnimal.find(testEndangeredAnimal.getId()).getAge());
   }
-  // @Test
-  // public void healthStatus_returnsGoodHealthStatusIfTrue_true() {
-  //   String testHealth = EmdamgeredAnimal.okay;
-  //   EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Fox", "Healthy", "Young");
-  //   assertTrue(testHealth = 50);
-  // }
+
 }
