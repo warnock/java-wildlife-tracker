@@ -12,8 +12,21 @@ public class Ranger implements DatabaseManagement {
     this.address = address;
   }
 
+  public String getName() {
+    return name;
+  }
 
+  public int getBadgeNumber() {
+    return badge_number;
+  }
 
+  public String getAddress() {
+    return address;
+  }
+
+  public int getId() {
+    return id;
+  }
 
   @Override
   public void save() {
