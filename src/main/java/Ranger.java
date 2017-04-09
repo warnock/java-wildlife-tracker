@@ -14,6 +14,7 @@ public class Ranger implements DatabaseManagement {
 
 
 
+
   @Override
   public void save() {
     try(Connection con = DB.sql2o.open()) {
