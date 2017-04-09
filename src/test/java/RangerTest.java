@@ -67,4 +67,11 @@ public class RangerTest {
     assertEquals(Ranger.find(secondRanger.getId()), secondRanger);
   }
 
+  @Test
+   public void equals_returnsTrueIfNameIsTheSame() {
+     Ranger firstRanger = new Ranger("Tom", 34, "salmon creek dr");
+     Ranger secondRanger = new Ranger("Tom", 34, "salmon creek dr");
+     assertTrue(firstRanger.equals(secondRanger));
+   }
+
 }
