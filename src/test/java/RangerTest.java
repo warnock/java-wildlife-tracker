@@ -22,4 +22,10 @@ public class RangerTest {
     assertEquals("Tom", testRanger.getName());
   }
 
+  @Test
+  public void getBadgeNumber_instantiatesCorrectly_true() {
+    Ranger testRanger = new Ranger("Tom", 34, "salmon creek dr");
+    assertEquals(34, testRanger.getBadgeNumber());
+  }
+
 }
