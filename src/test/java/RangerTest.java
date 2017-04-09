@@ -51,11 +51,11 @@ public class RangerTest {
    assertEquals(true, Ranger.all().get(1).equals(secondRanger));
  }
 
- // @Test
- //  public void save_savesIntoDatabase_true() {
- //    Ranger newRanger = new Ranger("Tom", 34, "salmon creek dr");
- //    newRanger.save();
- //    assertTrue(Ranger.all().get(0).equals(newRanger));
- //  }
+ @Test
+  public void save_savesIntoDatabase_true() {
+    Ranger newRanger = new Ranger("Tom", 34, "salmon creek dr");
+    newRanger.save();
+    assertTrue(Ranger.all().get(0).equals(newRanger));
+  }
 
 }
