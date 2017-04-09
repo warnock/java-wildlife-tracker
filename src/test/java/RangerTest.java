@@ -28,4 +28,17 @@ public class RangerTest {
     assertEquals(34, testRanger.getBadgeNumber());
   }
 
+  @Test
+  public void getAddress_instantiatesCorrectly_true() {
+    Ranger testRanger = new Ranger("Tom", 34, "salmon creek dr");
+    assertEquals("salmon creek dr", testRanger.getAddress());
+  }
+
+  @Test
+  public void getId_returnsInstanceOfId_1() {
+    Ranger newRanger = new Ranger("Tom", 34, "salmon creek dr");
+    newRanger.save();
+    assertTrue(newRanger.getId() > 0);
+ }
+
 }
