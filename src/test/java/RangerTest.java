@@ -74,4 +74,12 @@ public class RangerTest {
      assertTrue(firstRanger.equals(secondRanger));
    }
 
+   @Test
+   public void delete_deletesRanger_true() {
+     Ranger myRanger = new Ranger("Tom", 34, "salmon creek dr");
+     myRanger.save();
+     myRanger.delete();
+     assertEquals(null, Ranger.find(myRanger.getId()));
+   }
+
 }
