@@ -52,7 +52,7 @@ public class Sighting implements DatabaseManagement {
       return false;
     } else {
       Sighting newSighting = (Sighting) otherSighting;
-      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation()) && this.getRangerName().equals(newSighting.getRangerName());
+      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation()) && this.getRangerId() == (newSighting.getRangerId());
     }
   }
 
@@ -62,11 +62,10 @@ public class Sighting implements DatabaseManagement {
       throw new UnsupportedOperationException("You must enter in a location");
       }
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animal_id, location, ranger_name, date, ranger_id) VALUES (:animal_id, :location, :ranger_name, now(), :ranger_id);";
+      String sql = "INSERT INTO sightings (animal_id, location, date, ranger_id) VALUES (:animal_id, :location, now(), :ranger_id);";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("animal_id", this.animal_id)
         .addParameter("location", this.location)
-        .addParameter("ranger_name", this.ranger_name)
         .addParameter("ranger_id", this.ranger_id)
         .throwOnMappingFailure(false)
         .executeUpdate()
