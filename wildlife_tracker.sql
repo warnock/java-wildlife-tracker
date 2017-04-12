@@ -103,41 +103,6 @@ ALTER SEQUENCE endangered_animals_id_seq OWNED BY endangered_animals.id;
 
 
 --
--- Name: rangers; Type: TABLE; Schema: public; Owner: meganwarnock
---
-
-CREATE TABLE rangers (
-    id integer NOT NULL,
-    name character varying,
-    badge_number integer,
-    address character varying
-);
-
-
-ALTER TABLE rangers OWNER TO meganwarnock;
-
---
--- Name: rangers_id_seq; Type: SEQUENCE; Schema: public; Owner: meganwarnock
---
-
-CREATE SEQUENCE rangers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE rangers_id_seq OWNER TO meganwarnock;
-
---
--- Name: rangers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: meganwarnock
---
-
-ALTER SEQUENCE rangers_id_seq OWNED BY rangers.id;
-
-
---
 -- Name: sightings; Type: TABLE; Schema: public; Owner: meganwarnock
 --
 
@@ -146,7 +111,7 @@ CREATE TABLE sightings (
     animal_id integer,
     location character varying,
     date timestamp without time zone,
-    ranger_id integer
+    ranger_name character varying
 );
 
 
@@ -188,13 +153,6 @@ ALTER TABLE ONLY endangered_animals ALTER COLUMN id SET DEFAULT nextval('endange
 
 
 --
--- Name: rangers id; Type: DEFAULT; Schema: public; Owner: meganwarnock
---
-
-ALTER TABLE ONLY rangers ALTER COLUMN id SET DEFAULT nextval('rangers_id_seq'::regclass);
-
-
---
 -- Name: sightings id; Type: DEFAULT; Schema: public; Owner: meganwarnock
 --
 
@@ -213,7 +171,7 @@ COPY animals (id, name) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: meganwarnock
 --
 
-SELECT pg_catalog.setval('animals_id_seq', 8, true);
+SELECT pg_catalog.setval('animals_id_seq', 9, true);
 
 
 --
@@ -228,29 +186,14 @@ COPY endangered_animals (id, name, health, age) FROM stdin;
 -- Name: endangered_animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: meganwarnock
 --
 
-SELECT pg_catalog.setval('endangered_animals_id_seq', 5, true);
-
-
---
--- Data for Name: rangers; Type: TABLE DATA; Schema: public; Owner: meganwarnock
---
-
-COPY rangers (id, name, badge_number, address) FROM stdin;
-\.
-
-
---
--- Name: rangers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: meganwarnock
---
-
-SELECT pg_catalog.setval('rangers_id_seq', 1, false);
+SELECT pg_catalog.setval('endangered_animals_id_seq', 6, true);
 
 
 --
 -- Data for Name: sightings; Type: TABLE DATA; Schema: public; Owner: meganwarnock
 --
 
-COPY sightings (id, animal_id, location, date, ranger_id) FROM stdin;
+COPY sightings (id, animal_id, location, date, ranger_name) FROM stdin;
 \.
 
 
@@ -258,7 +201,7 @@ COPY sightings (id, animal_id, location, date, ranger_id) FROM stdin;
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: meganwarnock
 --
 
-SELECT pg_catalog.setval('sightings_id_seq', 25, true);
+SELECT pg_catalog.setval('sightings_id_seq', 28, true);
 
 
 --
@@ -275,14 +218,6 @@ ALTER TABLE ONLY animals
 
 ALTER TABLE ONLY endangered_animals
     ADD CONSTRAINT endangered_animals_pkey PRIMARY KEY (id);
-
-
---
--- Name: rangers rangers_pkey; Type: CONSTRAINT; Schema: public; Owner: meganwarnock
---
-
-ALTER TABLE ONLY rangers
-    ADD CONSTRAINT rangers_pkey PRIMARY KEY (id);
 
 
 --

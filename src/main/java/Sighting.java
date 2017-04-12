@@ -12,14 +12,13 @@ public class Sighting implements DatabaseManagement {
   private String ranger_name;
   private int id;
   private Timestamp date;
-  private int ranger_id;
 
-  public Sighting(int animal_id, String location, String ranger_name, int ranger_id) {
+
+  public Sighting(int animal_id, String location, String ranger_name) {
     this.animal_id = animal_id;
     this.location = location;
     this.ranger_name = ranger_name;
     this.id = id;
-    this.ranger_id = ranger_id;
   }
 
   public int getId() {
@@ -42,9 +41,7 @@ public class Sighting implements DatabaseManagement {
     return date;
   }
 
-  public int getRangerId() {
-    return ranger_id;
-  }
+
 
   @Override
   public boolean equals(Object otherSighting) {
@@ -52,7 +49,7 @@ public class Sighting implements DatabaseManagement {
       return false;
     } else {
       Sighting newSighting = (Sighting) otherSighting;
-      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation()) && this.getRangerId() == (newSighting.getRangerId());
+      return this.getAnimalId() == (newSighting.getAnimalId()) && this.getLocation().equals(newSighting.getLocation()) && this.getRangerName().equals(newSighting.getRangerName());
     }
   }
 
@@ -62,11 +59,11 @@ public class Sighting implements DatabaseManagement {
       throw new UnsupportedOperationException("You must enter in a location");
       }
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO sightings (animal_id, location, date, ranger_id) VALUES (:animal_id, :location, now(), :ranger_id);";
+      String sql = "INSERT INTO sightings (animal_id, location, ranger_name, date) VALUES (:animal_id, :location, :ranger_name, now());";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("animal_id", this.animal_id)
         .addParameter("location", this.location)
-        .addParameter("ranger_id", this.ranger_id)
+        .addParameter("ranger_name", this.ranger_name)
         .throwOnMappingFailure(false)
         .executeUpdate()
         .getKey();
